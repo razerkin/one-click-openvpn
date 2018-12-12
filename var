@@ -1,0 +1,31 @@
+#定义key的生成目录
+set_var EASYRSA_PKI	"$EASYRSA/pki" 
+ 
+#定义生成私钥的大小，一般为1024或2048，默认为2048位。这个就是我们在执行build-dh命令生成dh2048文件的依据。
+set_var EASYRSA_KEY_SIZE 2048
+ 
+set_var EASYRSA_ALGO rsa
+ 
+#ca证书有效期，默认为3650天，即十年            
+set_var EASYRSA_CA_EXPIRE 3650
+ 
+#定义秘钥的有效期，默认为3650天，即十年             
+set_var EASYRSA_CERT_EXPIRE	3650   
+ 
+#定义所在的国家       
+set_var EASYRSA_REQ_COUNTRY "MARS"  
+ 
+#定义所在的省         
+set_var EASYRSA_REQ_PROVINCE "VPNPROVINCE"      
+ 
+#定义所在的城市    
+set_var EASYRSA_REQ_CITY "VPNCITY" 
+ 
+#定义所在的组织        
+set_var EASYRSA_REQ_ORG "Decli"  
+ 
+#定义邮箱           
+set_var EASYRSA_REQ_EMAIL "Decli@vpn.com"  
+ 
+#定义所在单位  
+set_var EASYRSA_REQ_OU "Decli"
