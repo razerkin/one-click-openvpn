@@ -5,6 +5,7 @@ PASSWORD=""
 DBUSER="vpnadmin"
 DBPWD="vpnadminpwd"
 GRANT="grant all on openvpn.* to "$DBUSER"@'localhost' identified by '"$DBPWD"';"
+USERCERTNAME="vpnuser"
 #DBNAME="openvpn"
 #USERTABLENAME="vpnuser"
 yum groupinstall -y "Development Tools"
@@ -41,14 +42,14 @@ openvpn --genkey --secret ta.key
 cp -r ta.key /etc/openvpn/
 ./easyrsa  gen-req server decli nopass
 ./easyrsa sign-req server server
-./easyrsa build-client-full vpnuser nopass
+./easyrsa build-client-full $USERCERTNAME nopass
 cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/server/
 cp /etc/openvpn/easy-rsa/pki/private/server.key /etc/openvpn/server/
 cp /etc/openvpn/easy-rsa/pki/issued/server.crt /etc/openvpn/server/
 cp /etc/openvpn/easy-rsa/pki/dh.pem /etc/openvpn/server/
 cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/client/
-cp /etc/openvpn/easy-rsa/pki/issued/vpnuser.crt /etc/openvpn/client/
-cp /etc/openvpn/easy-rsa/pki/private/vpnuser.key /etc/openvpn/client/
+cp /etc/openvpn/easy-rsa/pki/issued/$USERCERTNAME.crt /etc/openvpn/client/
+cp /etc/openvpn/easy-rsa/pki/private/$USERCERTNAME.key /etc/openvpn/client/
 #cp /pki/ca.crt /etc/openvpn/server/
 #cp /pki/private/server.key /etc/openvpn/server/
 #cp /pki/issued/server.crt /etc/openvpn/server/
@@ -91,6 +92,6 @@ testsaslauthd -u test1 -p test1 -s openvpn
 cp ~/openvpn/server.conf /etc/openvpn/
 service openvpn@server restart
 sz /etc/openvpn/server/ca.crt
-sz /etc/openvpn/client/vpnuser.key
-sz /etc/openvpn/client/vpnuser.crt
+sz /etc/openvpn/client/$USERCERTNAME.key
+sz /etc/openvpn/client/$USERCERTNAME.crt
 sz /etc/openvpn/ta.key
