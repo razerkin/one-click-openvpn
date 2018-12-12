@@ -45,3 +45,8 @@ then copy and replace the ca.crt,ta.key,user's key&cert in the file.
 * Add/Delete User (use mysql);
 * User Run OPENVPN
 
+## Use of
+* OpenVPN
+* Mysql
+* iptables
+* ...
