@@ -15,5 +15,5 @@ create table logtable (
    time    char (100)
    );
 insert into vpnuser (name,password) values ('test1',password('test1'));
-grant all on openvpn.* to vpnadmin@'localhost' identified by 'decli';
-flush privileges;
+#grant all on openvpn.* to vpnadmin@'localhost' identified by 'vpnadminpwd';
+#flush privileges;
