@@ -13,7 +13,7 @@ Openvpn one-click install is a shell to delpoy Openvpn server with User/Pass & c
 1. Download the file from release
 ```
 # cd ~
-# yum install -y wget
+# yum install -y git
 # git clone https://github.com/razerkin/one-click-openvpn ~/openvpn
 ```
 2. Edit the database information
