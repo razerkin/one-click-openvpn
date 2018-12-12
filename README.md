@@ -23,7 +23,7 @@ USERNAME="root"
 PASSWORD=""
 DBUSER="vpnadmin"
 DBPWD="vpnadminpwd"
-USERCARTNAME="vpnuser"
+USERCERTNAME="vpnuser"
 
 3. Run the shell to install openvpn,mysql,iptables...
 source ~/openvpn/openvpn.sh
