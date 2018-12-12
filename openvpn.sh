@@ -2,8 +2,11 @@ HOSTNAME="localhost"
 PORT="3306"
 USERNAME="root"
 PASSWORD=""
-DBNAME="openvpn"
-TABLENAME=""
+DBUSER="vpnadmin"
+DBPWD="vpnadminpwd"
+GRANT="grant all on openvpn.* to "$DBUSER"@'localhost' identified by '"$DBPWD"';"
+#DBNAME="openvpn"
+#USERTABLENAME="vpnuser"
 yum groupinstall -y "Development Tools"
 yum install -y cyrus-sasl openssl mariadb mariadb-devel mariadb-server pam-devel libnss-mysql git
 git clone https://github.com/razerkin/openvpn
@@ -78,9 +81,11 @@ systemctl enable iptables.service
 systemctl start iptables.service
 cp ~/openvpn/server.conf /etc/openvpn/
 mysql -h $HOSTNAME -u $USERNAME -p$PASSWORD -e "source ~/openvpn/mysql.sql";
+mysql -h $HOSTNAME -u $USERNAME -p$PASSWORD -e "$GRANT";
+mysql -h $HOSTNAME -u $USERNAME -p$PASSWORD -e "flush privileges";
 touch /etc/pam.d/openvpn
-echo 'auth sufficient pam_mysql.so user=vpnadmin passwd=decli host=localhost db=openvpn table=vpnuser usercolumn=name passwdcolumn=password [where=vpnuser.active=1] sqllog=0 crypt=2 sqllog=true logtable=logtable logmsgcolumn=msg logusercolumn=user logpidcolumn=pid loghostcolumn=host logrhostcolumn=rhost logtimecolumn=time' >> /etc/pam.d/openvpn
-echo 'account required pam_mysql.so user=vpnadmin passwd=decli host=localhost db=openvpn table=vpnuser usercolumn=name passwdcolumn=password [where=vpnuser.active=1] sqllog=0 crypt=2 sqllog=true logtable=logtable logmsgcolumn=msg logusercolumn=user logpidcolumn=pid loghostcolumn=host logrhostcolumn=rhost logtimecolumn=time' >> /etc/pam.d/openvpn
+echo 'auth sufficient pam_mysql.so user='$DBUSER' passwd='$DBPWD' host=localhost db=openvpn table=vpnuser usercolumn=name passwdcolumn=password [where=vpnuser.active=1] sqllog=0 crypt=2 sqllog=true logtable=logtable logmsgcolumn=msg logusercolumn=user logpidcolumn=pid loghostcolumn=host logrhostcolumn=rhost logtimecolumn=time' >> /etc/pam.d/openvpn
+echo 'account required pam_mysql.so user='$DBUSER' passwd='$DBPWD' host=localhost db=openvpn table=vpnuser usercolumn=name passwdcolumn=password [where=vpnuser.active=1] sqllog=0 crypt=2 sqllog=true logtable=logtable logmsgcolumn=msg logusercolumn=user logpidcolumn=pid loghostcolumn=host logrhostcolumn=rhost logtimecolumn=time' >> /etc/pam.d/openvpn
 saslauthd -a pam
 testsaslauthd -u test1 -p test1 -s openvpn
 cp ~/openvpn/server.conf /etc/openvpn/
