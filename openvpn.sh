@@ -46,13 +46,13 @@ cp /etc/openvpn/easy-rsa/pki/dh.pem /etc/openvpn/server/
 cp /etc/openvpn/easy-rsa/pki/ca.crt /etc/openvpn/client/
 cp /etc/openvpn/easy-rsa/pki/issued/vpnuser.crt /etc/openvpn/client/
 cp /etc/openvpn/easy-rsa/pki/private/vpnuser.key /etc/openvpn/client/
-cp /pki/ca.crt /etc/openvpn/server/
-cp /pki/private/server.key /etc/openvpn/server/
-cp /pki/issued/server.crt /etc/openvpn/server/
-cp /pki/dh.pem /etc/openvpn/server/
-cp /pki/ca.crt /etc/openvpn/client/
-cp /pki/issued/vpnuser.crt /etc/openvpn/client/
-cp /pki/private/vpnuser.key /etc/openvpn/client/
+#cp /pki/ca.crt /etc/openvpn/server/
+#cp /pki/private/server.key /etc/openvpn/server/
+#cp /pki/issued/server.crt /etc/openvpn/server/
+#cp /pki/dh.pem /etc/openvpn/server/
+#cp /pki/ca.crt /etc/openvpn/client/
+#cp /pki/issued/vpnuser.crt /etc/openvpn/client/
+#cp /pki/private/vpnuser.key /etc/openvpn/client/
 echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
 sysctl -p
 yum install -y iptables iptables-services
