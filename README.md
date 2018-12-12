@@ -25,7 +25,7 @@ DBUSER="vpnadmin"
 DBPWD="vpnadminpwd"
 USERCARTNAME="vpnuser"
 
-3.
+3. Run the shell to install openvpn,mysql,iptables...
 source ~/openvpn/openvpn.sh
 
 4. Edit the client.conf and donwload it to connect your server.
