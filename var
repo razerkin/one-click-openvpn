@@ -1,5 +1,5 @@
 #定义key的生成目录
-set_var EASYRSA_PKI	"$EASYRSA/pki" 
+set_var EASYRSA_PKI	"/etc/openvpn/easy-rsa/pki" 
  
 #定义生成私钥的大小，一般为1024或2048，默认为2048位。这个就是我们在执行build-dh命令生成dh2048文件的依据。
 set_var EASYRSA_KEY_SIZE 2048
