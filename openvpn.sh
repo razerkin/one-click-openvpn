@@ -8,7 +8,7 @@ yum groupinstall -y "Development Tools"
 yum install -y cyrus-sasl openssl mariadb mariadb-devel mariadb-server pam-devel libnss-mysql git
 git clone https://github.com/razerkin/openvpn
 cd /usr/local/src
-wget https://github.com/razerkin/openvpn/raw/master/pam_mysql-0.7RC1.tar.gz
+cp ~/openvpn/pam_mysql-0.7RC1.tar.gz /usr/local/src
 tar -zxvf pam_mysql-0.7RC1.tar.gz
 cd pam_mysql-0.7RC1/
 ./configure --with-pam-mods-dir=/usr/lib64/security
@@ -21,7 +21,7 @@ chkconfig mysqld on
 service mysqld start
 yum install -y vim lrzsz openvpn easy-rsa
 cd ~
-wget http://pkgs.fedoraproject.org/repo/pkgs/openvpn/openvpn-2.0.7.tar.gz/93528233f1f6d02fc18e2c00f82e0aca/openvpn-2.0.7.tar.gz
+cp ~/openvpn/openvpn-2.0.7.tar.gz ~
 tar xf openvpn-2.0.7.tar.gz 
 cd openvpn-2.0.7/plugin/auth-pam/
 make
