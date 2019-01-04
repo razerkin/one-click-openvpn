@@ -33,7 +33,7 @@ Openvpn one-click install is a shell to delpoy Openvpn server with User/Pass & c
 ```
 4. Edit the client.conf and donwload it to connect your server.
 ```
-# sz ~/openvpn/client.conf
+# sz ~/openvpn/client.ovpn
 ```
 then copy and replace the ca.crt,ta.key,user's key&cert in the file.
 
