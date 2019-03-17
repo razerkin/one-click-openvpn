@@ -8,6 +8,21 @@ GRANT="grant all on openvpn.* to "$DBUSER"@'localhost' identified by '"$DBPWD"';
 USERCERTNAME="vpnuser"
 #DBNAME="openvpn"
 #USERTABLENAME="vpnuser"
+yum install -y epel-release 
+yum install -y wget
+wget https://mirrors.ustc.edu.cn/epel//7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+rpm -ivh epel-release-7-11.noarch.rpm
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all
+rm -rf /var/cache/yum
+yum makecache
+yum update
+yum install -y pkcs11-helper pkcs11-helper-devel lzo lzo-devel ntp
+sudo ntpdate time.windows.com&
+sudo systemctl enable ntpd
+sudo systemctl start ntpd
+sudo timedatectl set-ntp true
+date
 yum groupinstall -y "Development Tools"
 yum install -y cyrus-sasl openssl mariadb mariadb-devel mariadb-server pam-devel libnss-mysql git
 git clone https://github.com/razerkin/openvpn
