@@ -16,7 +16,7 @@ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 yum clean all
 rm -rf /var/cache/yum
 yum makecache
-yum update
+yum update -y
 yum install -y pkcs11-helper pkcs11-helper-devel lzo lzo-devel ntp
 sudo ntpdate time.windows.com&
 sudo systemctl enable ntpd
